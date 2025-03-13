@@ -60,9 +60,9 @@ print('Metoda IQR\n')
 print(df[df['engine.displacement'] < q1_engine_displacement - iqr_engine_displacement*1.5])
 print(df[df['engine.displacement'] > q3_engine_displacement + iqr_engine_displacement*1.5])
 print('Acc')
-print(iqr_acceleration)
-print(q1_acceleration)
-print(q3_acceleration)
+# print(iqr_acceleration)
+# print(q1_acceleration)
+# print(q3_acceleration)
 print(df[df['acceleration'] < q1_acceleration - iqr_acceleration*1.5])
 print(df[df['acceleration'] > q3_acceleration + iqr_acceleration*1.5])
 
@@ -76,6 +76,7 @@ for i in columns_names:
 list_records_to_delete = [4, 7, 15, 121, 123, 184, 185, 198, 234]
 df_new = df.drop(list_records_to_delete)
 print(df_new.head())
+
 # Średnia i mediana po usunięciu rekordów
 for i in columns_names:
     print(i)
@@ -86,3 +87,5 @@ for i in columns_names:
 # print(df[df['engine.displacement']< 350][df['acceleration']<10])
 # print(df[df['engine.displacement']> 400][df['acceleration']>18])
 # print(df[df['engine.displacement']< 200][df['acceleration']>21])
+# print(sorted(np.array(df['engine.displacement'])))
+# print(sorted(np.array(df['acceleration'])))
