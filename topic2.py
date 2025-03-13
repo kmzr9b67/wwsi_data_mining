@@ -20,7 +20,6 @@ for i in columns_names:
     plt.title(f'Histogram wartości dla zmiennej {i}.')
     plt.savefig(f'{getenv("FILE_URL")}/rysunek{1+counter}.png',  dpi=300, bbox_inches='tight')
     counter += 1
-
     if i == 'acceleration':
         print(i)
         print(df[df[i] <  5])
@@ -41,7 +40,7 @@ plt.savefig(f'{getenv("FILE_URL")}/sccater_1.png',  dpi=300, bbox_inches='tight'
 #Z-score standardization  
 for i in columns_names:
     df[f'{i}.standard'] = pd.DataFrame((df[i]-df[i].mean())/df[i].std())
-
+print('Z-score')
 for i in columns_names:
     print(df[df[f'{i}.standard'] > 3])
     print(df[df[f'{i}.standard'] < -3])
@@ -66,3 +65,24 @@ print(q1_acceleration)
 print(q3_acceleration)
 print(df[df['acceleration'] < q1_acceleration - iqr_acceleration*1.5])
 print(df[df['acceleration'] > q3_acceleration + iqr_acceleration*1.5])
+
+# Średnia i mediana przed usunięciem rekordów 
+for i in columns_names:
+    print(i)
+    print(df[i].mean())
+    print(df[i].median())
+
+# Usuwanie obesrewacji 
+list_records_to_delete = [4, 7, 15, 121, 123, 184, 185, 198, 234]
+df_new = df.drop(list_records_to_delete)
+print(df_new.head())
+# Średnia i mediana po usunięciu rekordów
+for i in columns_names:
+    print(i)
+    print(df_new[i].mean())
+    print(df_new[i].median())
+
+# print(df[df['engine.displacement']> 400][df['acceleration']>18])
+# print(df[df['engine.displacement']< 350][df['acceleration']<10])
+# print(df[df['engine.displacement']> 400][df['acceleration']>18])
+# print(df[df['engine.displacement']< 200][df['acceleration']>21])
